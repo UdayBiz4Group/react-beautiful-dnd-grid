@@ -1,7 +1,7 @@
 import React, { ReactElement } from "react";
 import { DragDropContext, Droppable, DroppableProvided, DroppableStateSnapshot, DropResult } from "react-beautiful-dnd";
 import { ListManagerItem } from "./ListManagerItem";
-import hash from "object-hash";
+// import hash from "object-hash";
 
 interface Location {
   id: string;
@@ -48,7 +48,7 @@ export const DragAndDropWrapper: React.StatelessComponent<Props> = ({
               {...provided.droppableProps}
             >
               {items.map((item: any, index: number) => (
-                <ListManagerItem key={hash(item)} item={item} index={index} render={render} />
+                <ListManagerItem key={index} item={item} index={index} render={render} />
               ))}
               {provided.placeholder}
             </div>
@@ -60,7 +60,7 @@ export const DragAndDropWrapper: React.StatelessComponent<Props> = ({
 };
 
 function mapAndInvoke(onDragEnd: (result: DragAndDropResult) => void) {
-  return function({ source, destination }: DropResult): void {
+  return function ({ source, destination }: DropResult): void {
     if (destination !== undefined && destination !== null) {
       const result: DragAndDropResult = {
         source: {
